@@ -3,14 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Product</title>
+    <title>404 not found</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: 'Quicksand';
+      }
+
+      .main-header {
+        background-color: #dbc441;
+        height: 3.5rem;
+      }
+
+      .main-header__nav {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
+      .main-header__item-list {
+        padding: 0;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      .main-header__item {
+        margin: 0 1.5rem;
+        padding: 0;
+      }
+
+      .main-header__item a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      .main-header__item a:hover,
+      .main-header__item a:active,
+      .main-header__item a.active {
+        color: #6200ff;
+      }
+
+      main {
+        padding: 1rem;
+      }
+    </style>
   </head>
   <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="/">Shop</a></li>
-          <li><a href="/add-product">Add product</a></li>
+    <header class="main-header">
+      <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+          <li class="main-header__item"><a href="/" class="active">Shop</a></li>
+          <li class="main-header__item">
+            <a href="/admin/add-product">Add product</a>
+          </li>
         </ul>
       </nav>
     </header>
