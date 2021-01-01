@@ -8,7 +8,7 @@ const shopRoutes = require('./routes/shop');
 const app = express();
 
 // TEMPLATING ENGINE
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 // body parser
