@@ -4,6 +4,7 @@ const express = require('express');
 // ROUTES
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const errorController = require('./controllers/errorController');
 
 const app = express();
 
@@ -19,9 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
-app.use((req, res, next) => {
-  res.render('404', { docTitle: '404 not found!', path: '' });
-});
+app.use(errorController.get404);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}...`));
