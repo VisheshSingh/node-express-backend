@@ -20,7 +20,7 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
-  res.render('404', { docTitle: '404 not found!' });
+  res.render('404', { docTitle: '404 not found!', path: '' });
 });
 
 const PORT = process.env.PORT || 5000;
