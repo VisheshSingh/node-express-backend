@@ -26,3 +26,10 @@ exports.getCart = (req, res, next) => {
     path: '/cart',
   });
 };
+
+exports.getOrders = (req, res, next) => {
+  res.render('shop/orders', {
+    docTitle: 'Your Orders',
+    path: '/orders',
+  });
+};
