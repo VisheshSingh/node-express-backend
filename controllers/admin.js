@@ -16,8 +16,11 @@ exports.postProduct = (req, res, next) => {
 };
 
 exports.getAdminProducts = (req, res, next) => {
-  res.render('admin/products', {
-    docTitle: 'Admin Products',
-    path: '/admin/products',
+  Product.fetchAll((products) => {
+    res.render('admin/products', {
+      prods: products,
+      docTitle: 'Admin Products',
+      path: '/admin/products',
+    });
   });
 };
