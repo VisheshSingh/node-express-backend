@@ -1,9 +1,9 @@
-<%- include('partials/head.ejs') %>
+<%- include('../partials/head.ejs') %>
     <link rel="stylesheet" href="/css/product.css" />
 </head>
 
 <body>
-    <%- include('partials/navigation.ejs') %>
+    <%- include('../partials/navigation.ejs') %>
     <main>
         <div class="main">
             <% if (prods.length > 0 ){ %> <% prods.forEach(function(prod) { %>
@@ -35,4 +35,4 @@
           </div>
     </main>
 
-<%- include('partials/end.ejs') %>
+<%- include('../partials/end.ejs') %>
