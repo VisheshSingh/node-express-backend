@@ -1,6 +1,8 @@
 const path = require('path');
 const express = require('express');
 
+const db = require('./util/database');
+
 // ROUTES
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
@@ -16,6 +18,10 @@ app.set('views', 'views');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+db.execute('SELECT* FROM products')
+  .then((result) => console.log(result[0]))
+  .catch((err) => console.log(err));
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
