@@ -1,9 +1,9 @@
 const path = require('path');
 const express = require('express');
 
-const db = require('./util/database');
 const dotenv = require('dotenv');
 dotenv.config();
+const sequelize = require('./util/database');
 
 // ROUTES
 const adminRoutes = require('./routes/admin');
@@ -27,4 +27,11 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}...`));
+
+sequelize
+  .sync()
+  .then((result) => {
+    // console.log(result);
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}...`));
+  })
+  .catch((err) => console.log(err));
