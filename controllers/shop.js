@@ -1,6 +1,9 @@
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
 
+// @desc    Get all products - Homepage
+// @route   GET /
+// @access  Public
 exports.getIndex = (req, res, next) => {
   Product.findAll()
     .then((products) => {
@@ -13,6 +16,9 @@ exports.getIndex = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
+// @desc    Get all products
+// @route   GET /products
+// @access  Public
 exports.getProducts = (req, res, next) => {
   Product.findAll()
     .then((products) => {
@@ -25,6 +31,9 @@ exports.getProducts = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
+// @desc    Get Single Product
+// @route   GET /product/:productId
+// @access  Public
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
   Product.findByPk(prodId)
@@ -38,6 +47,9 @@ exports.getProduct = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
+// @desc    Get Cart
+// @route   GET /cart
+// @access  Public
 exports.getCart = (req, res, next) => {
   Cart.getCart((cart) => {
     Product.fetchAll((products) => {
@@ -57,6 +69,9 @@ exports.getCart = (req, res, next) => {
   });
 };
 
+// @desc    Post to Cart
+// @route   POST /cart
+// @access  Public
 exports.postCart = (req, res, next) => {
   const productId = req.body.productId;
   Product.findById(productId, (product) => {
@@ -73,6 +88,9 @@ exports.postDeleteCartProduct = (req, res, next) => {
   res.redirect('/cart');
 };
 
+// @desc    Get Orders
+// @route   GET /orders
+// @access  Public
 exports.getOrders = (req, res, next) => {
   res.render('shop/orders', {
     pageTitle: 'Your Orders',
