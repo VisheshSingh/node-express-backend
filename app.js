@@ -10,6 +10,8 @@ const Product = require('./models/Product');
 const User = require('./models/User');
 const Cart = require('./models/Cart');
 const CartItem = require('./models/CartItem');
+const Order = require('./models/Order');
+const OrderItem = require('./models/OrderItem');
 
 // ROUTES
 const adminRoutes = require('./routes/admin');
@@ -49,6 +51,9 @@ User.hasMany(Product);
 User.hasOne(Cart);
 Cart.belongsToMany(Product, { through: CartItem });
 Product.belongsToMany(Cart, { through: CartItem });
+Order.belongsTo(User);
+User.hasMany(Order);
+Order.belongsToMany(Product, { through: OrderItem });
 
 sequelize
   // .sync({ force: true })
