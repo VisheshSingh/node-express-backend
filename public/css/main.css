@@ -191,10 +191,41 @@ form {
   cursor: pointer;
 }
 
+.btn.danger {
+  color: #d63a3a;
+  border: 1px solid #d63a3a;
+}
+
 .btn:hover,
 .btn:active {
   background-color: #00695c;
   color: white;
+}
+
+.btn.danger:hover,
+.btn.danger:active {
+  background-color: #d63a3a;
+  color: #fff;
+}
+
+.cart__item-list {
+  list-style-type: none;
+}
+
+.cart__item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  padding: 10px;
+  width: 80%;
+  margin: 5px auto;
+}
+
+.cart__item h1,
+.cart__item h2 {
+  margin: 0;
+  font-size: 20px;
 }
 
 @media (min-width: 768px) {
