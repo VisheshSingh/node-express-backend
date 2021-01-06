@@ -5,8 +5,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 const sequelize = require('./util/database');
 
+// MODELS
 const Product = require('./models/Product');
 const User = require('./models/User');
+const Cart = require('./models/Cart');
+const CartItem = require('./models/CartItem');
 
 // ROUTES
 const adminRoutes = require('./routes/admin');
@@ -40,10 +43,15 @@ app.use(errorController.get404);
 
 const PORT = process.env.PORT || 5000;
 
+// ASSOCIATIONS
 Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
 User.hasMany(Product);
+User.hasOne(Cart);
+Cart.belongsToMany(Product, { through: CartItem });
+Product.belongsToMany(Cart, { through: CartItem });
 
 sequelize
+  // .sync({ force: true })
   .sync()
   .then(() => {
     return User.findByPk(1);
@@ -55,8 +63,10 @@ sequelize
     return user;
   })
   .then((user) => {
-    // console.log(result);
-    // console.log(user);
+    return user.createCart();
+  })
+  .then((cart) => {
+    console.log(cart);
     app.listen(PORT, () => console.log(`Server running on port ${PORT}...`));
   })
   .catch((err) => console.log(err));
