@@ -11,6 +11,9 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const errorController = require('./controllers/errorController');
 
+// MODELS
+const User = require('./models/User');
+
 const app = express();
 
 // TEMPLATING ENGINE
@@ -23,7 +26,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  next();
+  User.findById('5ff756759517bd36139c453f')
+    .then((user) => {
+      req.user = user;
+      console.log(req.user);
+      next();
+    })
+    .catch((err) => console.log(err));
 });
 
 app.use('/admin', adminRoutes);
