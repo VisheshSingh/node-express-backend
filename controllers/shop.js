@@ -91,7 +91,7 @@ exports.postDeleteCartProduct = (req, res, next) => {
 // @access  Public
 exports.getOrders = (req, res, next) => {
   req.user
-    .getOrders({ include: ['products'] })
+    .getOrder()
     .then((orders) => {
       res.render('shop/orders', {
         pageTitle: 'Your Orders',
